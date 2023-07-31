@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Add New User</h2>
+<mat-dialog-content class="center-content">
+  <mat-form-field class="full-width-input">
+    <input matInput placeholder="Name" [(ngModel)]="newUser.name"/>
+  </mat-form-field>
+  <mat-checkbox [(ngModel)]="newUser.active">Active</mat-checkbox>
+</mat-dialog-content>
+<mat-dialog-actions class="actions">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!newUser.name " (click)="onAddUser()">Add User</button>
+</mat-dialog-actions>

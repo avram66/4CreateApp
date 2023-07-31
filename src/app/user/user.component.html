@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h1>4Create FE (Angular) test</h1>
+  <button
+    class="btn btn-primary mb-3"
+    [disabled]="!(users$ | async)?.length || !(isAddUserButtonEnabled$ | async)"
+    (click)="openAddUserModal()"
+  >
+    Add User
+  </button>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of (users$ | async)">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-sm"
+            [ngClass]="{ 'btn-success': user.active, 'btn-secondary': !user.active }"
+            (click)="toggleActive(user)"
+          >
+            {{ user.active ? 'Active' : 'Inactive' }}
+          </button>
+          &nbsp;
+          <button
+            type="button"
+            class="btn btn-danger  btn-sm"
+            (click)="onDeleteUser(user)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
